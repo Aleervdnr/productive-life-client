@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import LoginRegisterpage from "./pages/LoginRegisterpage";
 import { useAuth } from "./context/AuthContext";
 import { ProtectedRoute } from "./ProtectedRoute";
@@ -12,10 +12,12 @@ function App() {
   const [activeItem, setActiveItem] = useState("home");
   const { isAuthenticated } = useAuth();
   return (
-    <BrowserRouter>
+    <HashRouter>
       <main
         className={`${
-          isAuthenticated ? `grid grid-rows-[55px,calc(100vh-55px)] lg:grid-cols-[250px_1fr]` : ""
+          isAuthenticated
+            ? `grid grid-rows-[55px,calc(100vh-55px)] lg:grid-cols-[250px_1fr]`
+            : ""
         } `}
       >
         <Routes>
@@ -35,8 +37,8 @@ function App() {
         </Routes>
         <NavBar activeItem={activeItem} />
       </main>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
-export default App
+export default App;
